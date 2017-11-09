@@ -90,6 +90,7 @@ print(D)
 
 ----
 _Notes_:
+<br>
 5.
 ```Python
 b = [1, 2, 3]
@@ -105,9 +106,11 @@ d2.a is b
 # False
 ```
 
+<br>
 6. to_dict
 ```Python
 regular_dict = my_addict.to_dict()
 ```
 
+<br>
 7. As it is a dict, it will serialize into JSON perfectly.
