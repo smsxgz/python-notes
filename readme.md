@@ -5,8 +5,7 @@
 My python notes!
 
 
-1. [10 simple notes about simple python data structures](https://github.com/smsxgz/python-notes/blob/master/data-structure-notes) (when I was just a beginner with python).
-    
+1. [10 simple notes about simple python data structures](https://github.com/smsxgz/python-notes/blob/master/data-structure-notes) (when I was just a beginner with python).    
     These notes are from [python3 cookbook chapter 1](http://python3-cookbook.readthedocs.io/zh_CN/latest/c01).
     <br>
 
