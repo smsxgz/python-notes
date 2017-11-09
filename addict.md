@@ -108,6 +108,7 @@ d2.a is b
 
 <br>
 6. to_dict
+
 ```Python
 regular_dict = my_addict.to_dict()
 ```
