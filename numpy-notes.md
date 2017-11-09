@@ -1,4 +1,4 @@
-<http://arogozhnikov.github.io/2015/09/29/NumpyTipsAndTricks1.html>
+
 
 ```python
 import numpy as np
@@ -158,9 +158,8 @@ running_average_strides(sequence)
 
 _Remark_: for computing rolling mean, numpy.cumsum is best, however for other window statistics like min/max/percentile, use strides trick.
 
-
 <br>
-10. Strided
+10. as_strided
 
 ```python
 window = 10
@@ -168,4 +167,35 @@ rates = np.random.normal(size=1000)
 
 stride, = rates.strides
 X2 = as_strided(rates, [len(rates) - window , window], strides=[stride, stride])
+```
+
+another sample:
+```python
+def compute_window_mean_and_var(image, window_w, window_h):
+    w, h = image.shape
+    w_new, h_new = w - window_w + 1, h - window_h + 1
+    means = np.zeros([w_new, h_new])
+    maximums = np.zeros([w_new, h_new])
+    variations = np.zeros([w_new, h_new])
+    for i in range(w_new):
+        for j in range(h_new):
+            window = image[i:i+window_w, j:j+window_h]
+            means[i, j] = np.mean(window)
+            maximums[i, j] = np.max(window)
+            variations[i, j] = np.var(window)
+    return means, maximums, variations
+
+
+def compute_window_mean_and_var_strided(image, window_w, window_h):
+    w, h = image.shape
+    strided_image = np.lib.stride_tricks.as_strided(image,
+                                                    shape=[w - window_w + 1, h - window_h + 1, window_w, window_h],
+                                                    strides=image.strides + image.strides)
+    # important: trying to reshape image will create complete 4-dimensional compy
+    means = strided_image.mean(axis=(2,3))
+    mean_squares = (strided_image ** 2).mean(axis=(2, 3))
+    maximums = strided_image.max(axis=(2,3))
+
+    variations = mean_squares - means ** 2
+    return means, maximums, variations
 ```
