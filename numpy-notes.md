@@ -1,4 +1,4 @@
-(<http://arogozhnikov.github.io/2015/09/29/NumpyTipsAndTricks1.html>)
+<http://arogozhnikov.github.io/2015/09/29/NumpyTipsAndTricks1.html>
 
 ```python
 import numpy as np
@@ -92,11 +92,11 @@ distances2 **= 0.5
 ```
 
 <br>
-7. Categories.
+7. np.unique and np.searchsorted
 
 ```python
 from itertools import combinations
-possible_categories = map(lambda x: x[0] + x[1], list(combinations('abcdefghijklmn', 2)))
+possible_categories = list(map(lambda x: x[0] + x[1], list(combinations('abcdefghijklmn', 2))))
 categories = np.random.choice(possible_categories, size=10000)
 print(categories)
 
@@ -120,4 +120,52 @@ np.in1d(['ab', 'ac', 'something new'], unique_categories)
 ```
 
 <br>
-9.
+9. Rolling window, strided tricks.
+
+```python
+sequence = np.random.normal(size=10000) + np.arange(10000)
+
+def running_average_simple(seq, window=100):
+    result = np.zeros(len(seq) - window + 1)
+    for i in range(len(result)):
+        result[i] = np.mean(seq[i:i + window])
+    return result
+
+running_average_simple(sequence)
+```
+
+better method is to use as_strided
+
+```python
+from numpy.lib.stride_tricks import as_strided
+def running_average_strides(seq, window=100):
+    stride = seq.strides[0]
+    sequence_strides = as_strided(seq, shape=[len(seq) - window + 1, window], strides=[stride, stride])
+    return sequence_strides.mean(axis=1)
+
+running_average_strides(sequence)
+```
+
+However the right way is using np.cumsum
+
+```python
+def running_average_cumsum(seq, window=100):
+    s = np.insert(np.cumsum(seq), 0, [0])
+    return (s[window :] - s[:-window]) * (1. / window)
+
+running_average_strides(sequence)
+```
+
+_Remark_: for computing rolling mean, numpy.cumsum is best, however for other window statistics like min/max/percentile, use strides trick.
+
+
+<br>
+10. Strided
+
+```python
+window = 10
+rates = np.random.normal(size=1000)
+
+stride, = rates.strides
+X2 = as_strided(rates, [len(rates) - window , window], strides=[stride, stride])
+```
