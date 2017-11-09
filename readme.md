@@ -15,7 +15,7 @@ My python notes!
     These notes are from [arogozhnikov numpy trick1](http://arogozhnikov.github.io/2015/09/29/NumpyTipsAndTricks1.html) and [arogozhnikov numpy trick2](http://arogozhnikov.github.io/2015/09/30/NumpyTipsAndTricks2.html).
    <br>
 
-3. [Weighted sample by two method](https://github.com/smsxgz/python-notes/blob/master/weighted_sample.py).      
+3. [Weighted sample by Sumtree and multinomial](https://github.com/smsxgz/python-notes/blob/master/weighted_sample.py).      
     The code of Sumtree algorithm is from [MorvanZhou](https://github.com/MorvanZhou/Reinforcement-learning-with-tensorflow/blob/master/contents/5.2_Prioritized_Replay_DQN/RL_brain.py).
     <br>
 
