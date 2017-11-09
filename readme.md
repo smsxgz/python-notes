@@ -11,7 +11,7 @@ My python notes!
 
 
 
-2. [Some notes about numpy](https://github.com/smsxgz/python-notes/blob/master/numpy-notes.md).    
+2. [Some notes about numpy](https://github.com/smsxgz/python-notes/blob/master/numpy-notes.md).  
     These notes are from [arogozhnikov numpy trick1](http://arogozhnikov.github.io/2015/09/29/NumpyTipsAndTricks1.html) and [arogozhnikov numpy trick2](http://arogozhnikov.github.io/2015/09/30/NumpyTipsAndTricks2.html).
    <br>
 
