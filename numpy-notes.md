@@ -1,4 +1,4 @@
-
+(http://arogozhnikov.github.io/2015/09/29/NumpyTipsAndTricks1.html)
 
 ```python
 import numpy as np
@@ -191,11 +191,106 @@ def compute_window_mean_and_var_strided(image, window_w, window_h):
     strided_image = np.lib.stride_tricks.as_strided(image,
                                                     shape=[w - window_w + 1, h - window_h + 1, window_w, window_h],
                                                     strides=image.strides + image.strides)
-    # important: trying to reshape image will create complete 4-dimensional compy
     means = strided_image.mean(axis=(2,3))
     mean_squares = (strided_image ** 2).mean(axis=(2, 3))
     maximums = strided_image.max(axis=(2,3))
 
     variations = mean_squares - means ** 2
     return means, maximums, variations
+
+image = np.random.random([500, 500])
+
+%time a1, b1, c1 = compute_window_mean_and_var(image, 20, 20)
+# CPU times: user 9.83 s, sys: 172 ms, total: 10 s
+# Wall time: 9.87 s
+
+%time a2, b2, c2 = compute_window_mean_and_var_strided(image, 20, 20)
+# CPU times: user 464 ms, sys: 36 ms, total: 500 ms
+# Wall time: 497 ms
+
+np.allclose(a1, a2), np.allclose(b1, b2), np.allclose(c1, c2)
+# (True, True, True)
+```
+
+<br>
+11. Masked arrays
+```python
+houses_prices = np.random.exponential(size=10000)
+max_price = np.percentile(houses_prices, 95)
+max_price
+n_neighs = 20
+position_neighbours = np.random.randint(0, len(houses_prices), size=[100000, n_neighs])
+
+data = houses_prices[position_neighbours]
+ignored = houses_prices[position_neighbours] > max_price
+masked_prices = np.ma.MaskedArray(data=data, mask=ignored)
+
+np.array(masked_prices.mean(axis=1))
+```
+
+<br>
+12. numpy.ufunc.at & numpy.ufunc.reduceat
+```python
+salaries = np.random.random(2000)
+programers = np.sort(np.random.randint(0, len(salaries), size=10000))
+languages = np.random.randint(0, 50, size=len(programers))
+
+#
+lang_average_salaries = np.bincount(languages, salaries[programers]) / np.bincount(languages)
+
+#
+programmer_top_salary = np.zeros(programers.max() + 1)
+np.maximum.at(programmer_top_salary, programers, lang_average_salaries[languages])
+programmer_top_salary
+#
+lang_sorter = np.argsort(lang_average_salaries)
+lang_salaries_ordered = np.argsort(lang_sorter)
+
+programmer_top_language = np.zeros(programers.max() + 1, dtype=int)
+np.maximum.at(programmer_top_language, programers, lang_salaries_ordered[languages])
+
+programmer_top_language = lang_sorter[programmer_top_language]
+
+lang_average_salaries[programmer_top_language]
+# For programers with no languages, their 'top language' became the worst payed one, while the last method were zero.
+
+# faster way
+sorter = np.argsort(programers)
+ordered_programers = programers[sorter]
+ordered_languages = languages[sorter]
+
+limits_in_programmers = np.insert(np.bincount(programers).cumsum()[:-1], 0, [0])
+programmer_top_salary = np.maximum.reduceat(lang_average_salaries[ordered_languages], limits_in_programmers)
+```
+
+<br>
+13. Multidimensional statistics
+
+When need to compute number of times each combination met, there are two ways:  
+* convert couple of variables to new variable, e.g. by feature1 * (numpy.max(feature2) + 1) + feature2
+* create multidimensional table
+```python
+first_category = np.random.randint(0, 100, 10000)
+second_category = np.random.randint(0, 100, 10000)
+
+counters = np.zeros([first_category.max() + 1, second_category.max() + 1])
+np.add.at(counters, [first_category, second_category], 1)
+
+# occurences of second category
+counters.sum(axis=0)[second_category]
+
+# maximal occurences of second category with same value of first category
+counters.max(axis=0)[second_category]
+```
+
+<br>
+14. Counter
+```python
+new_categories = np.random.randint(0, 100, 10000)
+np.bincount(new_categories)
+np.bincount(new_categories)[new_categories]
+
+predictions = np.random.normal(size=len(new_categories))
+means_over_category = np.bincount(new_categories, weights=predictions) / np.bincount(new_categories)
+means_over_category[new_categories]
 ```
