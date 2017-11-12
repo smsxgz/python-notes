@@ -268,6 +268,7 @@ programmer_top_salary = np.maximum.reduceat(lang_average_salaries[ordered_langua
 
 <br>
 13. Multidimensional statistics
+
 Compute number of times each combination met:
 
 ```python
