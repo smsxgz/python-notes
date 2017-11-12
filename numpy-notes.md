@@ -294,3 +294,10 @@ predictions = np.random.normal(size=len(new_categories))
 means_over_category = np.bincount(new_categories, weights=predictions) / np.bincount(new_categories)
 means_over_category[new_categories]
 ```
+
+<br>
+15. One-hot Embedding
+```python
+one_hot = np.eye(new_categories.max() + 1)[new_categories]
+np.allclose(np.argmax(one_hot, axis=1), new_categories)
+```
