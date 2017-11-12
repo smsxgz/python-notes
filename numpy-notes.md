@@ -214,6 +214,7 @@ np.allclose(a1, a2), np.allclose(b1, b2), np.allclose(c1, c2)
 
 <br>
 11. Masked arrays
+
 ```python
 houses_prices = np.random.exponential(size=10000)
 max_price = np.percentile(houses_prices, 95)
@@ -230,6 +231,7 @@ np.array(masked_prices.mean(axis=1))
 
 <br>
 12. numpy.ufunc.at & numpy.ufunc.reduceat
+
 ```python
 salaries = np.random.random(2000)
 programers = np.sort(np.random.randint(0, len(salaries), size=10000))
@@ -285,6 +287,7 @@ counters.max(axis=0)[second_category]
 
 <br>
 14. Counter
+
 ```python
 new_categories = np.random.randint(0, 100, 10000)
 np.bincount(new_categories)
@@ -297,6 +300,7 @@ means_over_category[new_categories]
 
 <br>
 15. One-hot Embedding
+
 ```python
 one_hot = np.eye(new_categories.max() + 1)[new_categories]
 np.allclose(np.argmax(one_hot, axis=1), new_categories)
