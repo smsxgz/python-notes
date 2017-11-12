@@ -1,4 +1,5 @@
 (http://arogozhnikov.github.io/2015/09/29/NumpyTipsAndTricks1.html)
+(http://arogozhnikov.github.io/2015/09/30/NumpyTipsAndTricks2.html)
 
 ```python
 import numpy as np
