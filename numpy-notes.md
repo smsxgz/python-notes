@@ -268,10 +268,8 @@ programmer_top_salary = np.maximum.reduceat(lang_average_salaries[ordered_langua
 
 <br>
 13. Multidimensional statistics
+Compute number of times each combination met:
 
-When need to compute number of times each combination met, there are two ways:  
-* convert couple of variables to new variable, e.g. by feature1 * (numpy.max(feature2) + 1) + feature2
-* create multidimensional table
 ```python
 first_category = np.random.randint(0, 100, 10000)
 second_category = np.random.randint(0, 100, 10000)
