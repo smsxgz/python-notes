@@ -24,3 +24,6 @@ My python notes!
 5. [Addict](https://github.com/smsxgz/python-notes/blob/master/addict.md) is Awesome python module about dictionary!      
     [_addict_](https://github.com/mewwts/addict)
     <br>
+
+6. Reliable Request-Reply Patterns by pyzmq.
+    [zguide](http://zguide.zeromq.org/page:all#Chapter-Reliable-Request-Reply-Patterns)
