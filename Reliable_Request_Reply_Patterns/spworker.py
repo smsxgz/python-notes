@@ -10,13 +10,13 @@ from random import randint
 import time
 import zmq
 
-LRU_READY = "\x01"
+LRU_READY = "01".encode('utf-8')
 
 context = zmq.Context(1)
 worker = context.socket(zmq.REQ)
 
 identity = "%04X-%04X" % (randint(0, 0x10000), randint(0, 0x10000))
-worker.setsockopt(zmq.IDENTITY, identity)
+worker.setsockopt(zmq.IDENTITY, identity.encode('utf-8'))
 worker.connect("tcp://localhost:5556")
 
 print("I: (%s) worker ready" % identity)
