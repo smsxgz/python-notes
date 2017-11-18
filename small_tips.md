@@ -49,3 +49,10 @@ WARNING | 30
 INFO | 20
 DEBUG | 10
 NOTSET | 0
+
+
+6.
+```python
+from IPython import embed
+embed()
+```
