@@ -51,11 +51,18 @@ DEBUG | 10
 NOTSET | 0
 
 
-6.
+6. Debug
 ```python
 from IPython import embed
 embed()
 ```
+
+
+7. Server file system
+```bash
+python2.7 -m SimpleHTTPServer 7999
+```
+
 
 8. psutil
 Get process memory used.
@@ -67,4 +74,4 @@ print('Memory used: {}'.format(process.memory_info().rss/1000000))
 ```
 
 
-9. 
+9.
