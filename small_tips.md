@@ -56,3 +56,15 @@ NOTSET | 0
 from IPython import embed
 embed()
 ```
+
+8. psutil
+Get process memory used.
+```python
+import psutil
+
+process = psutil.Process(os.getpid())  
+print('Memory used: {}'.format(process.memory_info().rss/1000000))
+```
+
+
+9. 
