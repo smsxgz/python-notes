@@ -62,3 +62,16 @@ embed()
 ```bash
 python2.7 -m SimpleHTTPServer 7999
 ```
+
+
+8. psutil
+Get process memory used.
+```python
+import psutil
+
+process = psutil.Process(os.getpid())  
+print('Memory used: {}'.format(process.memory_info().rss/1000000))
+```
+
+
+9.
