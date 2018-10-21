@@ -62,7 +62,10 @@ embed()
 ```bash
 python2.7 -m SimpleHTTPServer 7999
 ```
-
+or
+```bash
+python3 -m http.server 7999
+```
 
 8. psutil
 Get process memory used.

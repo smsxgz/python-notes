@@ -15,7 +15,7 @@ My python notes!
    <br>
 
 3. [Weighted sample by Sumtree and multinomial](https://github.com/smsxgz/python-notes/blob/master/weighted_sample.py).      
-    The code of Sumtree algorithm is from [MorvanZhou](https://github.com/MorvanZhou/Reinforcement-learning-with-tensorflow/blob/master/contents/5.2_Prioritized_Replay_DQN/RL_brain.py).
+    The code of Sumtree data structrue is from [MorvanZhou](https://github.com/MorvanZhou/Reinforcement-learning-with-tensorflow/blob/master/contents/5.2_Prioritized_Replay_DQN/RL_brain.py).
     <br>
 
 4. [Convolution with numpy](https://github.com/smsxgz/python-notes/blob/master/convolution.py).
@@ -24,6 +24,3 @@ My python notes!
 5. [Addict](https://github.com/smsxgz/python-notes/blob/master/addict.md) is Awesome python module about dictionary!      
     [_addict_](https://github.com/mewwts/addict)
     <br>
-
-6. Reliable Request-Reply Patterns by pyzmq.
-    [zguide](http://zguide.zeromq.org/page:all#Chapter-Reliable-Request-Reply-Patterns)
