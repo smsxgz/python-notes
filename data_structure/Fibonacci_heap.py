@@ -117,7 +117,7 @@ class FibonacciHeap:
         x.degree += 1
 
     def consolidate(self):
-        dn = int(log2(self.num_key)) + 1
+        dn = int(log2(self.num_key)) + 2
         A = [None for i in range(dn)]
 
         w = self.min_node
