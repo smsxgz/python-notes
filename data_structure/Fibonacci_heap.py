@@ -115,6 +115,7 @@ class FibonacciHeap:
             child.right = y
         y.parent = x
         x.degree += 1
+        y.marked = False
 
     def consolidate(self):
         dn = int(log2(self.num_key)) + 2
